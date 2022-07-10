@@ -4,6 +4,16 @@ import 'package:side_navigation/side_navigation.dart';
 SideNavigationBar sidenavbar() {
   int idx = 0;
   return SideNavigationBar(
+    header: const SideNavigationBarHeader(
+        image: Image(
+          width: 80,
+          image: AssetImage('assets/images/invoice.png'),
+        ),
+        title: Text('headerr title'),
+        subtitle: Text('')),
+    footer: const SideNavigationBarFooter(
+      label: Text('by Devs On Coffee'),
+    ),
     selectedIndex: idx,
     items: const [
       SideNavigationBarItem(

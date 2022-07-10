@@ -2,56 +2,94 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kied/Screens/TabScreens/analytics.dart';
+import 'package:kied/services/sidmenu_controller.dart';
 import 'package:side_navigation/side_navigation.dart';
 
 import '../../widgets/sidenavbar.dart';
 import '../../widgets/sidemenubar.dart';
+import 'invoice.dart';
+import 'billing.dart';
+
+StatelessWidget whichfun(var id) {
+  switch (id) {
+    case 0:
+      return Invoice();
+    case 1:
+      return Billing();
+    default:
+      return Invoice();
+  }
+}
 
 class TabPage extends StatelessWidget {
-  const TabPage({Key? key}) : super(key: key);
-
+  TabPage({Key? key}) : super(key: key);
+  int idx = 1;
   @override
   Widget build(BuildContext context) {
+    final Controller c = Get.find();
     return Scaffold(
       body: Row(
         children: [
           sidenavbar(),
           Container(
+            height: MediaQuery.of(context).size.height,
             width: 250,
             decoration: BoxDecoration(
               color: Color.fromARGB(29, 162, 180, 206),
             ),
             child: sidemenubar(),
           ),
-          Container(
-            decoration: BoxDecoration(
-              color: Color.fromARGB(69, 224, 224, 254),
+          Obx(() {
+            switch (c.count.value) {
+              case 0:
+                return Invoice();
+              case 1:
+                return Billing();
+              case 3:
+                return Analytics();
+              default:
+                return Invoice();
+            }
+          }),
+        ],
+      ),
+    );
+  }
+}
+
+class formqstn extends StatelessWidget {
+  final String hint, data;
+  final Function(String) onchanged;
+  const formqstn({
+    Key? key,
+    required this.data,
+    required this.hint,
+    required this.onchanged,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 250,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            data,
+            style: TextStyle(
+              color: Color(0xff14D19D),
+              fontSize: 18,
+              fontWeight: FontWeight.w600,
             ),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 80,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: 43,
-                    ),
-                    Image(
-                      width: 800,
-                      image: AssetImage('assets/images/invoice-banner.png'),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 25,
-                ),
-                
-              ],
+          ),
+          TextField(
+            textAlignVertical: TextAlignVertical.bottom,
+            decoration: InputDecoration(
+              hintText: hint,
             ),
-          )
+            onChanged: onchanged,
+          ),
         ],
       ),
     );
