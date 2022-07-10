@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:kied/Screens/TabScreens/analytics.dart';
 import 'package:kied/services/sidmenu_controller.dart';
 import 'package:side_navigation/side_navigation.dart';
 
@@ -32,23 +33,25 @@ class TabPage extends StatelessWidget {
         children: [
           sidenavbar(),
           Container(
+            height: MediaQuery.of(context).size.height,
             width: 250,
             decoration: BoxDecoration(
               color: Color.fromARGB(29, 162, 180, 206),
             ),
             child: sidemenubar(),
           ),
-          Obx((){
+          Obx(() {
             switch (c.count.value) {
               case 0:
                 return Invoice();
               case 1:
                 return Billing();
+              case 3:
+                return Analytics();
               default:
-              return Invoice();
+                return Invoice();
             }
           }),
-          
         ],
       ),
     );
