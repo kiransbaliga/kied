@@ -22,7 +22,7 @@ class Invoice extends StatelessWidget {
     return Expanded(
       child: Container(
         decoration: const BoxDecoration(
-          color: const Color.fromARGB(69, 224, 224, 254),
+          color: Color.fromARGB(69, 224, 224, 254),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -108,66 +108,72 @@ class Invoice extends StatelessWidget {
                         formqstn(
                           data: 'Invoice Number',
                           hint: '#invoice',
-                          onchanged: (text) {},
+                          onchanged: (text) {
+                            c.invoicedata.value.invoiceNo = text;
+                          },
                         ),
                         formqstn(
                           data: 'Invoice Date',
                           hint: 'dd-mm-yyyy',
-                          onchanged: (text) {},
+                          onchanged: (text) {
+                            c.invoicedata.value.issueDate =
+                                DateTime.tryParse(text) ?? DateTime(2022);
+                          },
                         ),
                         formqstn(
                           data: 'Due Date',
                           hint: 'dd-mm-yyyy',
-                          onchanged: (text) {},
+                          onchanged: (text) {
+                            c.invoicedata.value.dueDate =
+                                DateTime.tryParse(text) ?? DateTime(2022);
+                          },
                         ),
                         formqstn(
                           data: 'Customer Note',
                           hint: 'Thank you for your business',
-                          onchanged: (text) {},
+                          onchanged: (text) {
+                            c.invoicedata.value.note = text;
+                          },
                         ),
-                        InkWell(
-                          onTap: () {},
-                          child: Container(
-                            width: 250,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border:
-                                  Border.all(color: const Color(0xff14D19D)),
-                            ),
-                            // child: ListTile(
-                            //   leading: Text(
-                            //     'Upload File',
-                            //     style: TextStyle(
-                            //       color: Color(0xff14D19D),
-                            //       fontSize: 16,
-                            //       fontWeight: FontWeight.w600,
-                            //     ),
-                            //   ),
-                            //   trailing: Icon(
-                            //     Icons.upload_rounded,
-                            //     color: Color(0xff14D19D),
-                            //   ),
-                            // ),
-                            child: ListTile(
-                              title: const Text(
-                                'Generate PDF',
-                                style: TextStyle(
-                                  color: Color(0xff14D19D),
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              trailing: const Icon(
-                                Icons.document_scanner,
+                        Container(
+                          width: 250,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            border: Border.all(color: const Color(0xff14D19D)),
+                          ),
+                          // child: ListTile(
+                          //   leading: Text(
+                          //     'Upload File',
+                          //     style: TextStyle(
+                          //       color: Color(0xff14D19D),
+                          //       fontSize: 16,
+                          //       fontWeight: FontWeight.w600,
+                          //     ),
+                          //   ),
+                          //   trailing: Icon(
+                          //     Icons.upload_rounded,
+                          //     color: Color(0xff14D19D),
+                          //   ),
+                          // ),
+                          child: ListTile(
+                            title: const Text(
+                              'Generate PDF',
+                              style: TextStyle(
                                 color: Color(0xff14D19D),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
                               ),
-                              onTap: () async {
-                                File f = await PDFMaker.makeCustomInvoice(
-                                    c.invoicedata.value);
-                                c.setDocument(await PDFDocument.fromFile(f));
-                                c.set(5);
-                              },
                             ),
+                            trailing: const Icon(
+                              Icons.document_scanner,
+                              color: Color(0xff14D19D),
+                            ),
+                            onTap: () async {
+                              File f = await PDFMaker.makeCustomInvoice(
+                                  c.invoicedata.value);
+                              c.setDocument(await PDFDocument.fromFile(f));
+                              c.set(5);
+                            },
                           ),
                         )
                       ],
