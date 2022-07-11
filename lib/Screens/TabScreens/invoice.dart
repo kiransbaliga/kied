@@ -1,12 +1,24 @@
+import 'dart:io';
+
+import 'package:easy_pdf_viewer/easy_pdf_viewer.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:kied/Screens/TabScreens/tabpage.dart';
+import 'package:kied/model/order_item.dart';
+import 'package:kied/services/sidmenu_controller.dart';
+
+import '../../logic/pdf_maker.dart';
+import '../../model/invoice.dart';
+import 'order_page.dart';
+
 class Invoice extends StatelessWidget {
-  const Invoice({
+  Invoice({
     Key? key,
   }) : super(key: key);
-
+  InvoiceData invoiceModel = InvoiceData();
   @override
   Widget build(BuildContext context) {
+    Controller c = Get.find();
     return Expanded(
       child: Container(
         decoration: BoxDecoration(
@@ -44,28 +56,48 @@ class Invoice extends StatelessWidget {
                         formqstn(
                           data: 'Customer Name',
                           hint: 'Customer name',
-                          onchanged: (text) {},
+                          onchanged: (text) {
+                            invoiceModel.receiverName = text;
+                          },
                         ),
                         formqstn(
-                          data: 'Order Number',
-                          hint: 'Order Number',
-                          onchanged: (text) {},
+                          data: 'Customer Address',
+                          hint: 'Enter Address',
+                          onchanged: (text) {
+                            invoiceModel.receiverAddress = text;
+                          },
                         ),
                         formqstn(
-                          data: 'Terms',
-                          hint: 'Due On Recipt',
-                          onchanged: (text) {},
+                          data: 'Business Name',
+                          hint: 'Business name',
+                          onchanged: (text) {
+                            invoiceModel.receiverName = text;
+                          },
                         ),
                         formqstn(
-                          data: 'Salesperson',
-                          hint: 'select a salesperson',
-                          onchanged: (text) {},
+                          data: 'Business Address',
+                          hint: 'Business Address',
+                          onchanged: (text) {
+                            invoiceModel.receiverAddress = text;
+                          },
                         ),
-                        formqstn(
-                          data: 'Terms & Conditions',
-                          hint: 'specify terms & conditions',
-                          onchanged: (text) {},
-                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text('Order'),
+                            ),
+                            Expanded(
+                              child: ElevatedButton(
+                                child: Text('Edit Order'),
+                                onPressed: () async {
+                                  InvoiceData id =
+                                      await Get.to<InvoiceData>(OrderPage()) ??
+                                          invoiceModel;
+                                },
+                              ),
+                            )
+                          ],
+                        )
                       ],
                     ),
                   ),
@@ -99,12 +131,25 @@ class Invoice extends StatelessWidget {
                             width: 250,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              border:
-                                  Border.all(color: Color(0xff14D19D)),
+                              border: Border.all(color: Color(0xff14D19D)),
                             ),
+                            // child: ListTile(
+                            //   leading: Text(
+                            //     'Upload File',
+                            //     style: TextStyle(
+                            //       color: Color(0xff14D19D),
+                            //       fontSize: 16,
+                            //       fontWeight: FontWeight.w600,
+                            //     ),
+                            //   ),
+                            //   trailing: Icon(
+                            //     Icons.upload_rounded,
+                            //     color: Color(0xff14D19D),
+                            //   ),
+                            // ),
                             child: ListTile(
-                              leading: Text(
-                                'Upload File',
+                              title: Text(
+                                'Generate PDF',
                                 style: TextStyle(
                                   color: Color(0xff14D19D),
                                   fontSize: 16,
@@ -112,9 +157,15 @@ class Invoice extends StatelessWidget {
                                 ),
                               ),
                               trailing: Icon(
-                                Icons.upload_rounded,
+                                Icons.document_scanner,
                                 color: Color(0xff14D19D),
                               ),
+                              onTap: () async {
+                                File f = await PDFMaker.makeCustomInvoice(
+                                    invoiceModel);
+                                c.setDocument(await PDFDocument.fromFile(f));
+                                c.set(5);
+                              },
                             ),
                           ),
                         )

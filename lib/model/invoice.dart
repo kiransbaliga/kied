@@ -7,7 +7,8 @@ class InvoiceData {
   String receiverName = '',
       receiverAddress = '',
       compnayAddress = '',
-      companyName = '';
+      companyName = '',
+      note = '';
   String invoiceNo = '', orderNo = '';
   DateTime issueDate = DateTime(2022), dueDate = DateTime(2023);
   List<OrderItem> orders = [];
