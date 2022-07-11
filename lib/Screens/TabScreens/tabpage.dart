@@ -65,12 +65,14 @@ class TabPage extends StatelessWidget {
 class formqstn extends StatelessWidget {
   final String hint, data;
   final Function(String) onchanged;
-  const formqstn({
-    Key? key,
-    required this.data,
-    required this.hint,
-    required this.onchanged,
-  }) : super(key: key);
+  final TextEditingController? tec;
+  const formqstn(
+      {Key? key,
+      required this.data,
+      required this.hint,
+      required this.onchanged,
+      this.tec})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
