@@ -72,8 +72,22 @@ class PDFMaker {
                       Column(children: [
                         Divider(),
                         Row(children: [
-                          Expanded(child: Text('Biriyani')),
-                          Expanded(child: Text('34 Rs'))
+                          Expanded(
+                            child: Text('${i + 1}',
+                                style: TextStyle(fontWeight: FontWeight.bold))),
+                        Expanded(
+                            flex: 2,
+                            child: Text('Steel',
+                                style: TextStyle(fontWeight: FontWeight.bold))),
+                        Expanded(
+                            child: Text('36',
+                                style: TextStyle(fontWeight: FontWeight.bold))),
+                        Expanded(
+                            child: Text('240',
+                                style: TextStyle(fontWeight: FontWeight.bold))),
+                        Expanded(
+                            child: Text('234567',
+                                style: TextStyle(fontWeight: FontWeight.bold)))
                         ])
                       ]),
                     Expanded(
