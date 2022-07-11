@@ -81,23 +81,33 @@ class Invoice extends StatelessWidget {
                             c.invoicedata.value.receiverAddress = text;
                           },
                         ),
-                        Row(
-                          children: [
-                            const Expanded(
-                              child: const Text('Order'),
-                            ),
-                            Expanded(
-                              child: ElevatedButton(
-                                child: const Text('Edit Order'),
-                                onPressed: () async {
-                                  InvoiceData id =
-                                      await Get.to<InvoiceData>(OrderPage()) ??
-                                          c.invoicedata.value;
-                                },
-                              ),
-                            )
-                          ],
-                        )
+                        Container(
+                            width: 250,
+                            child: Row(
+                              children: [
+                                const Expanded(
+                                  child: Text(
+                                    'Order',
+                                    style: TextStyle(
+                                      color: Color(0xff14D19D),
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: ElevatedButton(
+                                    child: const Text('Edit Order'),
+                                    onPressed: () async {
+                                      InvoiceData id =
+                                          await Get.to<InvoiceData>(
+                                                  OrderPage()) ??
+                                              c.invoicedata.value;
+                                    },
+                                  ),
+                                )
+                              ],
+                            )),
                       ],
                     ),
                   ),
