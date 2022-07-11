@@ -33,11 +33,11 @@ class Invoice extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const SizedBox(
+              children: const [
+                SizedBox(
                   width: 43,
                 ),
-                const Image(
+                Image(
                   width: 800,
                   image: AssetImage('assets/images/invoice-banner.png'),
                 ),
