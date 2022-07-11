@@ -26,7 +26,25 @@ class ShowPdfPage extends StatelessWidget {
           decoration: BoxDecoration(
             color: Color.fromARGB(69, 224, 224, 254),
           ),
-          child: Center(child: PDFViewer(document: c.document.value))),
+          child: Row(
+            children: [
+              PDFViewer(document: c.document.value),
+              Column(
+                children: [
+                  ElevatedButton(
+                      onPressed: () {
+                        c.set(1);
+                      },
+                      child: Text('Share')),
+                  ElevatedButton(
+                      onPressed: () {
+                        c.set(1);
+                      },
+                      child: Text('Exit')),
+                ],
+              )
+            ],
+          )),
     );
   }
 }
