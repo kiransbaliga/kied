@@ -6,6 +6,7 @@ import 'package:kied/model/invoice.dart';
 class Controller extends GetxController {
   var count = 0.obs;
   var document = PDFDocument().obs;
+  var invoicedata = InvoiceData().obs;
   set(int value) {
     count.value = value;
   }

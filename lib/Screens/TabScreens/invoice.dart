@@ -12,10 +12,10 @@ import '../../model/invoice.dart';
 import 'order_page.dart';
 
 class Invoice extends StatelessWidget {
-  Invoice({
+  const Invoice({
     Key? key,
   }) : super(key: key);
-  InvoiceData invoiceModel = InvoiceData();
+  // InvoiceData invoiceModel = InvoiceData();
   @override
   Widget build(BuildContext context) {
     Controller c = Get.find();
@@ -57,28 +57,28 @@ class Invoice extends StatelessWidget {
                           data: 'Customer Name',
                           hint: 'Customer name',
                           onchanged: (text) {
-                            invoiceModel.receiverName = text;
+                            c.invoicedata.value.receiverName = text;
                           },
                         ),
                         formqstn(
                           data: 'Customer Address',
                           hint: 'Enter Address',
                           onchanged: (text) {
-                            invoiceModel.receiverAddress = text;
+                            c.invoicedata.value.receiverAddress = text;
                           },
                         ),
                         formqstn(
                           data: 'Business Name',
                           hint: 'Business name',
                           onchanged: (text) {
-                            invoiceModel.receiverName = text;
+                            c.invoicedata.value.receiverName = text;
                           },
                         ),
                         formqstn(
                           data: 'Business Address',
                           hint: 'Business Address',
                           onchanged: (text) {
-                            invoiceModel.receiverAddress = text;
+                            c.invoicedata.value.receiverAddress = text;
                           },
                         ),
                         Row(
@@ -92,7 +92,7 @@ class Invoice extends StatelessWidget {
                                 onPressed: () async {
                                   InvoiceData id =
                                       await Get.to<InvoiceData>(OrderPage()) ??
-                                          invoiceModel;
+                                          c.invoicedata.value;
                                 },
                               ),
                             )
@@ -162,7 +162,7 @@ class Invoice extends StatelessWidget {
                               ),
                               onTap: () async {
                                 File f = await PDFMaker.makeCustomInvoice(
-                                    invoiceModel);
+                                    c.invoicedata.value);
                                 c.setDocument(await PDFDocument.fromFile(f));
                                 c.set(5);
                               },

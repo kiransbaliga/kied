@@ -31,7 +31,7 @@ class PDFMaker {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text("iorb To:"),
+                                Text("$iorb To:"),
                                 Text(data.receiverName,
                                     style:
                                         TextStyle(fontWeight: FontWeight.bold)),
