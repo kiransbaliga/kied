@@ -21,29 +21,29 @@ class Invoice extends StatelessWidget {
     Controller c = Get.find();
     return Expanded(
       child: Container(
-        decoration: BoxDecoration(
-          color: Color.fromARGB(69, 224, 224, 254),
+        decoration: const BoxDecoration(
+          color: const Color.fromARGB(69, 224, 224, 254),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 80,
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 43,
                 ),
-                Image(
+                const Image(
                   width: 800,
                   image: AssetImage('assets/images/invoice-banner.png'),
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 25,
             ),
             Expanded(
@@ -83,12 +83,12 @@ class Invoice extends StatelessWidget {
                         ),
                         Row(
                           children: [
-                            Expanded(
-                              child: Text('Order'),
+                            const Expanded(
+                              child: const Text('Order'),
                             ),
                             Expanded(
                               child: ElevatedButton(
-                                child: Text('Edit Order'),
+                                child: const Text('Edit Order'),
                                 onPressed: () async {
                                   InvoiceData id =
                                       await Get.to<InvoiceData>(OrderPage()) ??
@@ -131,7 +131,8 @@ class Invoice extends StatelessWidget {
                             width: 250,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
-                              border: Border.all(color: Color(0xff14D19D)),
+                              border:
+                                  Border.all(color: const Color(0xff14D19D)),
                             ),
                             // child: ListTile(
                             //   leading: Text(
@@ -148,7 +149,7 @@ class Invoice extends StatelessWidget {
                             //   ),
                             // ),
                             child: ListTile(
-                              title: Text(
+                              title: const Text(
                                 'Generate PDF',
                                 style: TextStyle(
                                   color: Color(0xff14D19D),
@@ -156,7 +157,7 @@ class Invoice extends StatelessWidget {
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-                              trailing: Icon(
+                              trailing: const Icon(
                                 Icons.document_scanner,
                                 color: Color(0xff14D19D),
                               ),
