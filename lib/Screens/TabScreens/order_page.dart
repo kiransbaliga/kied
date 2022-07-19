@@ -52,6 +52,7 @@ class OrderPage extends StatelessWidget {
               onchanged: (text) {
                 inv.orderNo = text;
               },
+              tec: TextEditingController(text: inv.orderNo),
             ),
             Row(
               children: [
@@ -128,29 +129,34 @@ class OrderPage extends StatelessWidget {
                               onChanged: (text) {
                                 oc.editName(text, ind);
                               },
+                              controller: TextEditingController(
+                                  text: inv.orders[ind].name),
                             ),
+                          ),
+                          Expanded(
+                            child: TextField(
+                                textAlignVertical: TextAlignVertical.bottom,
+                                decoration: InputDecoration(
+                                  hintText: 'Enter Quantity',
+                                ),
+                                onChanged: (text) {
+                                  oc.editQuantity(
+                                      double.tryParse(text) ?? 0, ind);
+                                },
+                                controller: TextEditingController(
+                                    text: inv.orders[ind].quantity.toString())),
                           ),
                           Expanded(
                             child: TextField(
                               textAlignVertical: TextAlignVertical.bottom,
                               decoration: InputDecoration(
-                                hintText: 'Enter Item',
-                              ),
-                              onChanged: (text) {
-                                oc.editQuantity(
-                                    double.tryParse(text) ?? 0, ind);
-                              },
-                            ),
-                          ),
-                          Expanded(
-                            child: TextField(
-                              textAlignVertical: TextAlignVertical.bottom,
-                              decoration: InputDecoration(
-                                hintText: 'Enter Item',
+                                hintText: 'Enter Rate',
                               ),
                               onChanged: (text) {
                                 oc.editRate(double.tryParse(text) ?? 0, ind);
                               },
+                              controller: TextEditingController(
+                                  text: inv.orders[ind].rate.toString()),
                             ),
                           ),
                           Expanded(
@@ -189,6 +195,7 @@ class OrderPage extends StatelessWidget {
                     onchanged: (text) {
                       oc.editTax(double.tryParse(text) ?? 0);
                     },
+                    tec: TextEditingController(text: '${inv.taxPercent}'),
                   ),
                 ),
                 Expanded(

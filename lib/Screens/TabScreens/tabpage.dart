@@ -90,6 +90,7 @@ class formqstn extends StatelessWidget {
             ),
           ),
           TextField(
+            controller: tec,
             textAlignVertical: TextAlignVertical.bottom,
             decoration: InputDecoration(
               hintText: hint,
