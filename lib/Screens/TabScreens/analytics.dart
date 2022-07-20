@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:get/get.dart';
+import 'package:kied/services/sidmenu_controller.dart';
 
 bool showAvg = false;
 
@@ -15,6 +17,11 @@ class _AnalyticsState extends State<Analytics> {
     const Color(0xff23b6e6),
     const Color(0xff02d39a),
   ];
+  Controller c = Get.find();
+  // @override
+  // initState() {
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -23,9 +30,9 @@ class _AnalyticsState extends State<Analytics> {
           decoration: BoxDecoration(
             color: Color.fromARGB(69, 224, 224, 254),
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: ListView(
+            // crossAxisAlignment: CrossAxisAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
                 height: 80,
@@ -42,6 +49,23 @@ class _AnalyticsState extends State<Analytics> {
               ),
               SizedBox(
                 height: 25,
+              ),
+              ListTile(
+                title: const Text(
+                  'Health Checker',
+                  style: TextStyle(
+                    color: Color(0xff14D19D),
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                trailing: const Icon(
+                  Icons.monitor_heart_outlined,
+                  color: Color(0xff14D19D),
+                ),
+                onTap: () async {
+                  c.set(6);
+                },
               ),
               Container(
                 width: 962,

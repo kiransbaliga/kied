@@ -99,12 +99,7 @@ class Invoice extends StatelessWidget {
                                   child: ElevatedButton(
                                     child: const Text('Edit Order'),
                                     onPressed: () async {
-                                      c.invoicedata.value =
-                                          await Get.to<InvoiceData>(() {
-                                                return OrderPage(
-                                                    inv: c.invoicedata.value);
-                                              }) ??
-                                              c.invoicedata.value;
+                                      c.count.value = 4;
                                     },
                                   ),
                                 )
