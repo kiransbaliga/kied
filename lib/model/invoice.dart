@@ -40,4 +40,11 @@ class InvoiceData {
   String beautifiedDate(DateTime dt) {
     return "${dt.day} ${dt.month} ${dt.year}";
   }
+
+  void edit({orderNo, orders, taxPercent, amount}) {
+    this.orderNo = orderNo;
+    this.orders = orders;
+    this.taxPercent = taxPercent;
+    this.amount = amount;
+  }
 }

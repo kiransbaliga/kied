@@ -50,22 +50,30 @@ class _AnalyticsState extends State<Analytics> {
               SizedBox(
                 height: 25,
               ),
-              ListTile(
-                title: const Text(
-                  'Health Checker',
-                  style: TextStyle(
-                    color: Color(0xff14D19D),
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
+              Container(
+                margin: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: const Color(0xff14D19D),
+                  borderRadius: BorderRadius.circular(10),
+                  // border: Border.all(color: const Color(0xff14D19D)),
+                ),
+                child: ListTile(
+                  title: const Text(
+                    'Health Checker',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
+                  trailing: const Icon(
+                    Icons.monitor_heart_outlined,
+                    color: Colors.white,
+                  ),
+                  onTap: () async {
+                    c.set(6);
+                  },
                 ),
-                trailing: const Icon(
-                  Icons.monitor_heart_outlined,
-                  color: Color(0xff14D19D),
-                ),
-                onTap: () async {
-                  c.set(6);
-                },
               ),
               Container(
                 width: 962,

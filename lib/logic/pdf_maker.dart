@@ -68,51 +68,47 @@ class PDFMaker {
                                 style: TextStyle(fontWeight: FontWeight.bold)))
                       ])
                     ]),
-                    for (int i = 0; i < 9; i++)
+                    for (int i = 0; i < data.orders.length; i++)
                       Column(children: [
                         Divider(),
                         Row(children: [
                           Expanded(
-                            child: Text('${i + 1}',
-                                style: TextStyle(fontWeight: FontWeight.bold))),
-                        Expanded(
-                            flex: 2,
-                            child: Text('Steel',
-                                style: TextStyle(fontWeight: FontWeight.bold))),
-                        Expanded(
-                            child: Text('36',
-                                style: TextStyle(fontWeight: FontWeight.bold))),
-                        Expanded(
-                            child: Text('240',
-                                style: TextStyle(fontWeight: FontWeight.bold))),
-                        Expanded(
-                            child: Text('234567',
-                                style: TextStyle(fontWeight: FontWeight.bold)))
+                              child: Text('${i + 1}',
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold))),
+                          Expanded(
+                              flex: 2,
+                              child: Text(data.orders[i].name,
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold))),
+                          Expanded(
+                              child: Text(data.orders[i].quantity.toString(),
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold))),
+                          Expanded(
+                              child: Text(data.orders[i].rate.toString(),
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold))),
+                          Expanded(
+                              child: Text(data.orders[i].price.toString(),
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold)))
                         ])
                       ]),
+                    SizedBox(height: 30),
                     Expanded(
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Payment Details",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold)),
-                                Text(
-                                  'Bank Name: Olivia Oggy',
-                                ),
-                                Text('Account Number: 1904 2920 9402 4859')
-                              ],
-                            ),
-                            Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Text('Sub Total: 340 Rs'),
-                                  Text('Tax (90%): 306 Rs'),
-                                  Text('Total: 646 Rs'),
-                                ])
+                            Text('Sub Total: ${data.amount} Rs',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            Text(
+                                'Tax: Rs ${(data.taxPercent / 100) * data.amount} (${data.taxPercent}%)',
+                                style: TextStyle(fontWeight: FontWeight.bold)),
+                            Text(
+                                'Total: Rs ${((100 + data.taxPercent) / 100) * data.amount}',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 22)),
                           ]),
                     ),
                     Expanded(
@@ -130,12 +126,9 @@ class PDFMaker {
     if (filename == '') {
       filename = DateTime.now().toIso8601String().substring(0, 16);
     }
-    print('exporting');
     Directory? output = await getApplicationDocumentsDirectory();
-    print(output.path);
     final file = File("${output.path}/$filename.pdf");
     await file.writeAsBytes(await pdf.save());
-    print('Saved to ${file.path}');
     return file;
   }
 }

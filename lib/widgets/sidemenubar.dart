@@ -6,27 +6,30 @@ import 'package:get/get.dart';
 
 import '../services/sidmenu_controller.dart';
 
-Column sidemenubar() {
+Widget sidemenubar() {
   final Controller c = Get.put(Controller());
-  return Column(
-    children: [
-      SizedBox(
-        height: 50,
-      ),
-      Text(
-        'Bizzness',
-        style: TextStyle(
-          fontSize: 30,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-      SizedBox(
-        height: 50,
-      ),
-      Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
+  return SingleChildScrollView(
+    child: SizedBox(
+      height: MediaQuery.of(Get.context!).size.height,
+      child: Column(
         children: [
+          SizedBox(
+            height: 50,
+          ),
+          Text(
+            'Bizzness',
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(
+            height: 50,
+          ),
+          // Column(
+          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //   crossAxisAlignment: CrossAxisAlignment.center,
+          //   children: [
           InkWell(
               child: Image(
                 width: 200,
@@ -46,7 +49,6 @@ Column sidemenubar() {
             ),
             onTap: () {
               c.set(1);
-              print(c.count);
             },
           ),
           SizedBox(
@@ -73,8 +75,10 @@ Column sidemenubar() {
               c.set(3);
             },
           ),
+          //   ],
+          // ),
         ],
       ),
-    ],
+    ),
   );
 }

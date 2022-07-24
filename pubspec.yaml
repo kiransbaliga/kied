@@ -36,6 +36,7 @@ dependencies:
   pdf: ^3.8.1
   easy_pdf_viewer: ^1.0.2
   path_provider: ^2.0.11
+  share_plus: ^4.0.10
 
 dev_dependencies:
   flutter_lints: ^2.0.0

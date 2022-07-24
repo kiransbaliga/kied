@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:kied/services/sidmenu_controller.dart';
 
@@ -16,6 +17,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Controller c = Get.put(Controller());
+
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.landscapeLeft, DeviceOrientation.landscapeRight]);
     return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(

@@ -6,7 +6,7 @@ class OrderController extends GetxController {
   RxDouble totalprice = (0.0).obs, taxr = (0.0).obs;
   RxList<OrderItem> items = RxList<OrderItem>();
 
-  OrderController(this.items, this.taxr, this.totalprice);
+  // OrderController(this.items, this.taxr, this.totalprice);
   add() {
     items.add(OrderItem());
   }
