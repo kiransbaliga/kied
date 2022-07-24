@@ -41,9 +41,10 @@ class PDFMaker {
                             Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
-                                  Text('iorb No: ${data.invoiceNo}'),
-                                  Text('iorb Date: ${data.issueDate}'),
-                                  Text('Due Date: ${data.dueDate}')
+                                  Text('$iorb No: ${data.invoiceNo}'),
+                                  Text('$iorb Date: ${data.issueDate}'),
+                                  if (data.isInvoice)
+                                    Text('Due Date: ${data.dueDate}'),
                                 ])
                           ]),
                     ),
@@ -100,15 +101,18 @@ class PDFMaker {
                       child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Text('Sub Total: ${data.amount} Rs',
-                                style: TextStyle(fontWeight: FontWeight.bold)),
                             Text(
-                                'Tax: Rs ${(data.taxPercent / 100) * data.amount} (${data.taxPercent}%)',
-                                style: TextStyle(fontWeight: FontWeight.bold)),
+                              'Sub Total: Rs ${data.amount.toStringAsFixed(2)}',
+                              // style: TextStyle(fontWeight: FontWeight.bold)
+                            ),
                             Text(
-                                'Total: Rs ${((100 + data.taxPercent) / 100) * data.amount}',
+                              'Tax: Rs ${((data.taxPercent / 100) * data.amount).toStringAsFixed(2)} (${data.taxPercent}%)',
+                              // style: TextStyle(fontWeight: FontWeight.bold)
+                            ),
+                            Text(
+                                'Total: Rs ${(((100 + data.taxPercent) / 100) * data.amount).toStringAsFixed(2)}',
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 22)),
+                                    fontWeight: FontWeight.bold, fontSize: 20)),
                           ]),
                     ),
                     Expanded(

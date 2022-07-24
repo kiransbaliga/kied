@@ -142,8 +142,8 @@ class Billing extends StatelessWidget {
                         data: 'Bill Date',
                         hint: 'dd-mm-yyyy',
                         onchanged: (text) {
-                          c.invoicedata.value.issueDate =
-                              DateTime.tryParse(text) ?? DateTime(2022);
+                          c.invoicedata.value.issueDate = text;
+                          // DateTime.tryParse(text) ?? DateTime(2022);
                         },
                       ),
                       SizedBox(

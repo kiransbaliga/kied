@@ -10,7 +10,7 @@ class InvoiceData {
       companyName = '',
       note = '';
   String invoiceNo = '', orderNo = '';
-  DateTime? issueDate = DateTime(2022), dueDate = DateTime(2023);
+  String issueDate = '', dueDate = '';
   List<OrderItem> orders = [];
   double amount = 0, taxPercent = 0;
 
@@ -18,10 +18,10 @@ class InvoiceData {
       {this.amount = 0,
       this.companyName = '',
       this.compnayAddress = '',
-      this.dueDate,
+      this.dueDate = '',
       this.invoiceNo = '',
       this.isInvoice = true,
-      this.issueDate,
+      this.issueDate = '',
       this.note = '',
       this.orderNo = '',
       this.orders = const [],
@@ -29,13 +29,13 @@ class InvoiceData {
       this.receiverName = '',
       this.taxPercent = 0});
 
-  String get getIssueDate {
-    return beautifiedDate(issueDate ?? DateTime(2022));
-  }
+  // String get getIssueDate {
+  //   return beautifiedDate(issueDate ?? DateTime(2022));
+  // }
 
-  String get getdueDate {
-    return beautifiedDate(dueDate ?? DateTime(2023));
-  }
+  // String get getdueDate {
+  //   return beautifiedDate(dueDate ?? DateTime(2023));
+  // }
 
   String beautifiedDate(DateTime dt) {
     return "${dt.day} ${dt.month} ${dt.year}";

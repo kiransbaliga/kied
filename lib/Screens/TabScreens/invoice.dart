@@ -81,7 +81,7 @@ class Invoice extends StatelessWidget {
                         data: 'Business Name',
                         hint: 'Business name',
                         onchanged: (text) {
-                          c.invoicedata.value.receiverName = text;
+                          c.invoicedata.value.companyName = text;
                         },
                       ),
                       SizedBox(
@@ -91,7 +91,7 @@ class Invoice extends StatelessWidget {
                         data: 'Business Address',
                         hint: 'Business Address',
                         onchanged: (text) {
-                          c.invoicedata.value.receiverAddress = text;
+                          c.invoicedata.value.compnayAddress = text;
                         },
                       ),
                       SizedBox(
@@ -142,8 +142,8 @@ class Invoice extends StatelessWidget {
                         data: 'Invoice Date',
                         hint: 'dd-mm-yyyy',
                         onchanged: (text) {
-                          c.invoicedata.value.issueDate =
-                              DateTime.tryParse(text) ?? DateTime(2022);
+                          c.invoicedata.value.issueDate = text;
+                          // DateTime.tryParse(text) ?? DateTime(2022);
                         },
                       ),
                       SizedBox(
@@ -153,8 +153,8 @@ class Invoice extends StatelessWidget {
                         data: 'Due Date',
                         hint: 'dd-mm-yyyy',
                         onchanged: (text) {
-                          c.invoicedata.value.dueDate =
-                              DateTime.tryParse(text) ?? DateTime(2022);
+                          c.invoicedata.value.dueDate = text;
+                          // DateTime.tryParse(text) ?? DateTime(2022);
                         },
                       ),
                       SizedBox(
