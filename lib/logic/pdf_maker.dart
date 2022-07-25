@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:hive_flutter/adapters.dart';
 import 'package:kied/model/invoice.dart';
+import 'package:kied/model/invoice_for_hive.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart';
@@ -130,6 +132,9 @@ class PDFMaker {
     if (filename == '') {
       filename = DateTime.now().toIso8601String().substring(0, 16);
     }
+    Box<InvoiceHiveModel> invoiceBox =
+        await Hive.openBox<InvoiceHiveModel>('invoices');
+    invoiceBox.put(filename, data.toHiveInvoice());
     Directory? output = await getApplicationDocumentsDirectory();
     final file = File("${output.path}/$filename.pdf");
     await file.writeAsBytes(await pdf.save());

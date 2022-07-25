@@ -1,3 +1,5 @@
+import 'package:kied/model/invoice_for_hive.dart';
+
 import 'order_item.dart';
 
 /// Class for both Invoice data and Bill data.
@@ -10,7 +12,7 @@ class InvoiceData {
       companyName = '',
       note = '';
   String invoiceNo = '', orderNo = '';
-  String issueDate = '', dueDate = '';
+  String issueDate = '', dueDate = '', filePath = '';
   List<OrderItem> orders = [];
   double amount = 0, taxPercent = 0;
 
@@ -29,6 +31,39 @@ class InvoiceData {
       this.receiverName = '',
       this.taxPercent = 0});
 
+  // InvoiceData.fromJson(Map map) {
+  //   this.amount = map['amount'];
+  //   this.companyName = map['company'];
+  //   this.compnayAddress = map['companyAddress'];
+  //   this.dueDate = map[''];
+  //   this.invoiceNo = map[''];
+  //   this.isInvoice = true;
+  //   this.issueDate = map[''];
+  //   this.note = map[''];
+  //   this.orderNo = map[''];
+  //   this.orders = const [];
+  //   this.receiverAddress = map[''];
+  //   this.receiverName = map[''];
+  //   this.taxPercent = map[''];
+  // }
+
+  InvoiceHiveModel toHiveInvoice() {
+    return InvoiceHiveModel(
+      amount: amount,
+      companyName: companyName,
+      compnayAddress: compnayAddress,
+      dueDate: dueDate,
+      invoiceNo: invoiceNo,
+      isInvoice: isInvoice,
+      issueDate: issueDate,
+      note: note,
+      orderNo: orderNo,
+      receiverAddress: receiverAddress,
+      receiverName: receiverName,
+      taxPercent: taxPercent,
+    );
+  }
+
   // String get getIssueDate {
   //   return beautifiedDate(issueDate ?? DateTime(2022));
   // }
@@ -46,5 +81,9 @@ class InvoiceData {
     this.orders = orders;
     this.taxPercent = taxPercent;
     this.amount = amount;
+  }
+
+  void updatePath(String path) {
+    filePath = path;
   }
 }
