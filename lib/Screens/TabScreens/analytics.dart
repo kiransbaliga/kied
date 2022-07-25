@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:get/get.dart';
+import 'package:kied/Screens/TabScreens/balancesheetinp.dart';
 import 'package:kied/services/sidmenu_controller.dart';
 import 'package:kied/widgets/piechart.dart';
 
@@ -29,6 +30,7 @@ class _AnalyticsState extends State<Analytics> {
 
   @override
   Widget build(BuildContext context) {
+    final Controller c = Get.find();
     return Expanded(
       child: Container(
           decoration: BoxDecoration(
@@ -133,7 +135,9 @@ class _AnalyticsState extends State<Analytics> {
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                   children: [
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        c.count.value = 7;
+                      },
                       child: Card(
                         // shape: ,
                         child: ListTile(
