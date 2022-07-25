@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:get/get.dart';
 import 'package:kied/services/sidmenu_controller.dart';
+import 'package:kied/widgets/piechart.dart';
 
 bool showAvg = false;
+int touchedIndex = -1;
 
 class Analytics extends StatefulWidget {
   Analytics({Key? key}) : super(key: key);
@@ -30,94 +32,77 @@ class _AnalyticsState extends State<Analytics> {
           decoration: BoxDecoration(
             color: Color.fromARGB(69, 224, 224, 254),
           ),
-          child: ListView(
-            // crossAxisAlignment: CrossAxisAlignment.center,
-            // mainAxisAlignment: MainAxisAlignment.center,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SizedBox(
-                height: 80,
+                height: 20,
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Image(
-                    width: 964,
-                    image: AssetImage('assets/images/invoice-banner.png'),
-                  ),
+                  // Image(
+                  //   width: 800,
+                  //   image: AssetImage('assets/images/invoice-banner.png'),
+                  // ),
                 ],
               ),
               SizedBox(
                 height: 25,
               ),
-              Container(
-                margin: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: const Color(0xff14D19D),
-                  borderRadius: BorderRadius.circular(10),
-                  // border: Border.all(color: const Color(0xff14D19D)),
-                ),
-                child: ListTile(
-                  title: const Text(
-                    'Health Checker',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  trailing: const Icon(
-                    Icons.monitor_heart_outlined,
-                    color: Colors.white,
-                  ),
-                  onTap: () async {
-                    c.set(6);
-                  },
-                ),
-              ),
-              Container(
-                width: 962,
-                height: 530,
-                child: Stack(
-                  children: <Widget>[
-                    AspectRatio(
-                      aspectRatio: 1.70,
-                      child: Container(
-                        decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(18),
+              Column(
+                children: [
+                  Container(
+                    width: 500,
+                    child: Stack(
+                      children: <Widget>[
+                        AspectRatio(
+                          aspectRatio: 1.70,
+                          child: Container(
+                            decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(18),
+                                ),
+                                color: Color(0x00ffffff)),
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  right: 18.0, left: 12.0, top: 24, bottom: 12),
+                              child: LineChart(
+                                showAvg ? avgData() : mainData(),
+                              ),
                             ),
-                            color: Color(0xff232d37)),
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              right: 18.0, left: 12.0, top: 24, bottom: 12),
-                          child: LineChart(
-                            showAvg ? avgData() : mainData(),
                           ),
                         ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 60,
-                      height: 34,
-                      child: TextButton(
-                        onPressed: () {
-                          setState(() {
-                            showAvg = !showAvg;
-                          });
-                        },
-                        child: Text(
-                          'avg',
-                          style: TextStyle(
-                              fontSize: 12,
-                              color: showAvg
-                                  ? Colors.white.withOpacity(0.5)
-                                  : Colors.white),
+                        SizedBox(
+                          width: 60,
+                          height: 34,
+                          child: TextButton(
+                            onPressed: () {
+                              setState(() {
+                                showAvg = !showAvg;
+                              });
+                            },
+                            child: Text(
+                              'avg',
+                              style: TextStyle(
+                                  fontSize: 12,
+                                  color: showAvg
+                                      ? Colors.grey.withOpacity(0.5)
+                                      : Colors.grey),
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                  Container(
+                    width: 400,
+                    height: 200,
+                    child: PieChartSample2(),
+                  ),
+                ],
               ),
             ],
           )),
