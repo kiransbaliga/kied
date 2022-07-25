@@ -159,7 +159,7 @@ class InvoiceListScreen extends StatelessWidget {
                                           ),
                                         ),
                                         trailing: const Icon(
-                                          Icons.document_scanner,
+                                          Icons.attach_money,
                                           color: Color(0xff14D19D),
                                         ),
                                         onTap: () async {

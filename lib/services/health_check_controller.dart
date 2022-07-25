@@ -21,16 +21,17 @@ class HealthController extends GetxController {
       interest = (0.0).obs;
   RxDouble roce = (0.0).obs,
       profitGrowth = (0.0).obs,
+      salesGrowth = (0.0).obs,
       roe = (0.0).obs,
       intrestCourageRatio = (0.0).obs,
       debtEqtRatio = (0.0).obs;
   RxInt health = 0.obs;
   calculateHealth() {
-    health.value = ((roce.value > 30) ? 2 : 0) +
-        ((roe.value > 30) ? 2 : 0) +
+    health.value = ((roce.value > 10) ? 2 : 0) +
+        ((salesGrowth.value > 30) ? 2 : 0) +
         ((profitGrowth.value > 30) ? 2 : 0) +
-        ((intrestCourageRatio.value > 30) ? 2 : 0) +
-        ((debtEqtRatio.value > 30) ? 2 : 0);
+        ((intrestCourageRatio.value > 3) ? 2 : 0) +
+        ((debtEqtRatio.value > 1.5) ? 2 : 0);
   }
 
   editCapEmplyed(double val) {
@@ -81,14 +82,14 @@ class HealthController extends GetxController {
 
   editTotalLiability(double val) {
     totalLiability.value = val;
-    editShareHolderEquity(totalAssets.value - val);
+    // editShareHolderEquity(totalAssets.value - val);
     debtEqtRatio.value = val / shareHolderEquity.value;
     calculateHealth();
   }
 
   editTotalAssets(double val) {
     totalAssets.value = val;
-    editShareHolderEquity(val - totalLiability.value);
+    // editShareHolderEquity(val - totalLiability.value);
     editCapEmplyed(val - currentEmployed.value);
   }
 

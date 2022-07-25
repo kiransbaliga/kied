@@ -155,7 +155,9 @@ class _AnalyticsState extends State<Analytics> {
                       ),
                     ),
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        c.set(6);
+                      },
                       child: Card(
                         // shape: ,
                         child: ListTile(

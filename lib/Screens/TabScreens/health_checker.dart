@@ -54,7 +54,7 @@ class HealthChecker extends StatelessWidget {
             ),
             Expanded(
               child: FractionallySizedBox(
-                widthFactor: 0.7,
+                widthFactor: 0.8,
                 child: ListView(
                   children: [
                     Row(
@@ -69,6 +69,9 @@ class HealthChecker extends StatelessWidget {
                             },
                           ),
                         ),
+                        const SizedBox(
+                          width: 15,
+                        ),
                         Expanded(
                           child: formqstn(
                             data: 'Total Expense',
@@ -78,31 +81,15 @@ class HealthChecker extends StatelessWidget {
                             },
                           ),
                         ),
+                        const SizedBox(
+                          width: 15,
+                        ),
                         Expanded(
                           child: formqstn(
                             data: 'Taxes',
                             hint: 'Taxes',
                             onchanged: (text) {
                               hc.editTax(double.tryParse(text) ?? 0);
-                            },
-                          ),
-                        ),
-                        Expanded(
-                          child: formqstn(
-                            data: 'Interest',
-                            hint: 'Interest',
-                            onchanged: (text) {
-                              hc.editInterest(double.tryParse(text) ?? 0);
-                            },
-                          ),
-                        ),
-                        Expanded(
-                          child: formqstn(
-                            data: 'Interest Expense',
-                            hint: 'Interest Expense',
-                            onchanged: (text) {
-                              hc.editInterestExpense(
-                                  double.tryParse(text) ?? 0);
                             },
                           ),
                         ),
@@ -116,6 +103,31 @@ class HealthChecker extends StatelessWidget {
                       children: [
                         Expanded(
                           child: formqstn(
+                            data: 'Interest',
+                            hint: 'Interest',
+                            onchanged: (text) {
+                              hc.editInterest(double.tryParse(text) ?? 0);
+                            },
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        Expanded(
+                          child: formqstn(
+                            data: 'Interest Expense',
+                            hint: 'Interest Expense',
+                            onchanged: (text) {
+                              hc.editInterestExpense(
+                                  double.tryParse(text) ?? 0);
+                            },
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 15,
+                        ),
+                        Expanded(
+                          child: formqstn(
                             data: 'Total Assets',
                             hint: 'Total Assets',
                             onchanged: (text) {
@@ -123,6 +135,13 @@ class HealthChecker extends StatelessWidget {
                             },
                           ),
                         ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      children: [
                         Expanded(
                           child: formqstn(
                             data: 'Current Liabilities',
@@ -133,6 +152,9 @@ class HealthChecker extends StatelessWidget {
                             },
                           ),
                         ),
+                        const SizedBox(
+                          width: 15,
+                        ),
                         Expanded(
                           child: formqstn(
                             data: 'Total Liability',
@@ -142,19 +164,42 @@ class HealthChecker extends StatelessWidget {
                             },
                           ),
                         ),
+                        const SizedBox(
+                          width: 15,
+                        ),
                         Expanded(
                           child: formqstn(
-                            data: 'Past Value',
-                            hint: 'Past Value',
+                            data: 'Shareholders Equity',
+                            hint: 'Shareholders Equity',
+                            onchanged: (text) {
+                              hc.editShareHolderEquity(
+                                  double.tryParse(text) ?? 0);
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: formqstn(
+                            data: 'Past Profit',
+                            hint: 'Past Profit',
                             onchanged: (text) {
                               hc.editPastVal(double.tryParse(text) ?? 0);
                             },
                           ),
                         ),
+                        const SizedBox(
+                          width: 20,
+                        ),
                         Expanded(
                           child: formqstn(
-                            data: 'Present Value',
-                            hint: 'Present Value',
+                            data: 'Present Profit',
+                            hint: 'Present Profit',
                             onchanged: (text) {
                               hc.editPresentVal(double.tryParse(text) ?? 0);
                             },
@@ -162,66 +207,103 @@ class HealthChecker extends StatelessWidget {
                         ),
                       ],
                     ),
+                    SizedBox(
+                      height: 20,
+                    ),
                     Obx(
                       () => Column(
                         children: [
                           MetricRow(
-                              val: hc.roce, name: 'Return on Capital Employed'),
-                          MetricRow(val: hc.roe, name: 'Return on Equity'),
+                            val: hc.roce,
+                            name: 'Return on Capital Employed',
+                            limit: 10,
+                          ),
+                          // MetricRow(val: hc.roe, name: 'Return on Equity'),
                           MetricRow(
-                              val: hc.profitGrowth, name: 'Profit Growth'),
+                              val: hc.profitGrowth,
+                              name: 'Profit Growth',
+                              limit: 30),
                           MetricRow(
-                              val: hc.intrestCourageRatio,
-                              name: 'Interest Coverage Ratio'),
+                              val: hc.salesGrowth,
+                              name: 'Sales Growth',
+                              limit: 30),
+                          MetricRow(
+                            val: hc.intrestCourageRatio,
+                            name: 'Interest Coverage Ratio',
+                            limit: 3,
+                          ),
                           MetricRow(
                               val: hc.debtEqtRatio,
-                              name: 'Debt to Equity Ratio'),
+                              name: 'Debt to Equity Ratio',
+                              limit: 1.5),
+                          SizedBox(
+                            height: 20,
+                          ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                const Text(
-                                  'Health of the company ',
-                                  style: TextStyle(
-                                    color: Color(0xff14D19D),
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Color(0xff14D19D),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 20, vertical: 10),
+                                    child: const Text(
+                                      'Health of the company ',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  hc.health < 1
-                                      ? "Very Bad"
-                                      : hc.health < 3
-                                          ? "Bad"
-                                          : hc.health < 5
-                                              ? "Average"
-                                              : hc.health < 7
-                                                  ? "Above Average"
-                                                  : hc.health < 9
-                                                      ? "Good"
-                                                      : "Excellent",
-                                  style: TextStyle(
-                                    color: hc.health < 1
-                                        ? Colors.red
-                                        : hc.health < 3
-                                            ? Colors.orange[900]
-                                            : hc.health < 5
-                                                ? Color.fromARGB(
-                                                    255, 181, 109, 0)
-                                                : hc.health < 7
-                                                    ? Color.fromARGB(
-                                                        255, 169, 154, 17)
-                                                    : hc.health < 9
-                                                        ? Color.fromARGB(
-                                                            255, 102, 145, 53)
-                                                        : Colors.green,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                )
-                              ],
+                                  Container(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 20, vertical: 10),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: hc.health < 1
+                                          ? Colors.red
+                                          : hc.health < 3
+                                              ? Colors.orange[900]
+                                              : hc.health < 5
+                                                  ? Color.fromARGB(
+                                                      255, 181, 109, 0)
+                                                  : hc.health < 7
+                                                      ? Color.fromARGB(
+                                                          255, 169, 154, 17)
+                                                      : hc.health < 9
+                                                          ? Color.fromARGB(
+                                                              255, 102, 145, 53)
+                                                          : Colors.green,
+                                    ),
+                                    child: Text(
+                                      hc.health < 1
+                                          ? "Very Bad"
+                                          : hc.health < 3
+                                              ? "Bad"
+                                              : hc.health < 5
+                                                  ? "Average"
+                                                  : hc.health < 7
+                                                      ? "Above Average"
+                                                      : hc.health < 9
+                                                          ? "Good"
+                                                          : "Excellent",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           )
                         ],
@@ -239,10 +321,12 @@ class HealthChecker extends StatelessWidget {
 }
 
 class MetricRow extends StatelessWidget {
-  const MetricRow({Key? key, required this.val, required this.name})
+  const MetricRow(
+      {Key? key, required this.val, required this.name, required this.limit})
       : super(key: key);
 
   final RxDouble val;
+  final double limit;
   final String name;
 
   @override
@@ -254,35 +338,49 @@ class MetricRow extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
+              flex: 2,
               child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                name,
-                style: const TextStyle(
-                  color: Color(0xff14D19D),
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              Obx(() => Text(val.toString()))
-            ],
-          )),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    name,
+                    style: const TextStyle(
+                      color: Color(0xff14D19D),
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Obx(() => Text(
+                        val.toStringAsFixed(3),
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ))
+                ],
+              )),
           Expanded(
+              flex: 3,
               child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Expected $name',
-                style: const TextStyle(
-                  color: Color(0xff14D19D),
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              Text('34 %')
-            ],
-          )),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Expected $name',
+                    style: const TextStyle(
+                      color: Color(0xff14D19D),
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  Text(
+                    '$limit',
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  )
+                ],
+              )),
           Expanded(
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -295,7 +393,7 @@ class MetricRow extends StatelessWidget {
                   fontWeight: FontWeight.w600,
                 ),
               ),
-              val > 34
+              val > limit
                   ? Text(
                       "Good",
                       style: const TextStyle(
