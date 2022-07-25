@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kied/Screens/TabScreens/analytics.dart';
 import 'package:kied/Screens/TabScreens/health_checker.dart';
+import 'package:kied/Screens/TabScreens/invoice_list.dart';
 import 'package:kied/Screens/TabScreens/order_page.dart';
 import 'package:kied/Screens/TabScreens/show_pdf_screen.dart';
 import 'package:kied/services/sidmenu_controller.dart';
@@ -20,6 +21,8 @@ StatelessWidget whichfun(var id) {
       return Invoice();
     case 1:
       return Billing();
+    case 2:
+      return InvoiceListScreen();
     default:
       return Invoice();
   }
@@ -57,6 +60,8 @@ class TabPage extends StatelessWidget {
                 return ShowPdfPage();
               case 6:
                 return HealthChecker();
+              case 2:
+                return InvoiceListScreen();
 
               default:
                 return Invoice();

@@ -8,6 +8,8 @@ class HealthController extends GetxController {
       shareHolderEquity = (1.0).obs,
       capEmplyed = (1.0).obs;
   RxDouble totalAssets = (0.0).obs,
+
+      /// Current employed is originally current Liabilities
       currentEmployed = (0.0).obs,
       presntVal = (0.0).obs,
       pastVal = (1.0).obs,
@@ -118,6 +120,6 @@ class HealthController extends GetxController {
 }
 
 /*
-Inputs:  Present Value, Past Value, Interest Expense, Total Liability
+Inputs:  Present Value, Past Value, Interest Expense, >>>>>>>>> Total Liability
         For EBIT & Net Profit: Total Revenue, Total Expense, Taxes, Interest,totalAssets,CurrentEmployed,
  */

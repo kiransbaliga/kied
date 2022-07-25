@@ -428,6 +428,7 @@ class Invoice extends StatelessWidget {
                         amount: oc.totalprice.value);
                     File f =
                         await PDFMaker.makeCustomInvoice(c.invoicedata.value);
+                    c.invoicedata.value = InvoiceData();
                     c.setDocument(f);
                     c.set(5);
                   },

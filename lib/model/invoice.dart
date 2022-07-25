@@ -71,6 +71,9 @@ class InvoiceData {
   // String get getdueDate {
   //   return beautifiedDate(dueDate ?? DateTime(2023));
   // }
+  double get getTotalAmount {
+    return (taxPercent * amount / 100) + amount;
+  }
 
   String beautifiedDate(DateTime dt) {
     return "${dt.day} ${dt.month} ${dt.year}";

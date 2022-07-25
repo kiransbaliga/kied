@@ -50,54 +50,62 @@ class PDFMaker {
                                 ])
                           ]),
                     ),
-                    Column(children: [
-                      Divider(),
-                      Row(children: [
-                        Expanded(
-                            child: Text('Sl No',
-                                style: TextStyle(fontWeight: FontWeight.bold))),
-                        Expanded(
-                            flex: 2,
-                            child: Text('Item',
-                                style: TextStyle(fontWeight: FontWeight.bold))),
-                        Expanded(
-                            child: Text('Quantity',
-                                style: TextStyle(fontWeight: FontWeight.bold))),
-                        Expanded(
-                            child: Text('Rate',
-                                style: TextStyle(fontWeight: FontWeight.bold))),
-                        Expanded(
-                            child: Text('Price',
-                                style: TextStyle(fontWeight: FontWeight.bold)))
-                      ])
-                    ]),
-                    for (int i = 0; i < data.orders.length; i++)
-                      Column(children: [
+                    Expanded(
+                      child: Column(children: [
                         Divider(),
                         Row(children: [
                           Expanded(
-                              child: Text('${i + 1}',
+                              child: Text('Sl No',
                                   style:
                                       TextStyle(fontWeight: FontWeight.bold))),
                           Expanded(
                               flex: 2,
-                              child: Text(data.orders[i].name,
+                              child: Text('Item',
                                   style:
                                       TextStyle(fontWeight: FontWeight.bold))),
                           Expanded(
-                              child: Text(data.orders[i].quantity.toString(),
+                              child: Text('Quantity',
                                   style:
                                       TextStyle(fontWeight: FontWeight.bold))),
                           Expanded(
-                              child: Text(data.orders[i].rate.toString(),
+                              child: Text('Rate',
                                   style:
                                       TextStyle(fontWeight: FontWeight.bold))),
                           Expanded(
-                              child: Text(data.orders[i].price.toString(),
+                              child: Text('Price',
                                   style:
                                       TextStyle(fontWeight: FontWeight.bold)))
-                        ])
+                        ]),
+                        for (int i = 0; i < data.orders.length; i++)
+                          Column(children: [
+                            Divider(),
+                            Row(children: [
+                              Expanded(
+                                  child: Text('${i + 1}',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold))),
+                              Expanded(
+                                  flex: 2,
+                                  child: Text(data.orders[i].name,
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold))),
+                              Expanded(
+                                  child: Text(
+                                      data.orders[i].quantity.toString(),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold))),
+                              Expanded(
+                                  child: Text(data.orders[i].rate.toString(),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold))),
+                              Expanded(
+                                  child: Text(data.orders[i].price.toString(),
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold)))
+                            ])
+                          ]),
                       ]),
+                    ),
                     SizedBox(height: 30),
                     Expanded(
                       child: Column(
@@ -132,12 +140,13 @@ class PDFMaker {
     if (filename == '') {
       filename = DateTime.now().toIso8601String().substring(0, 16);
     }
-    Box<InvoiceHiveModel> invoiceBox =
-        await Hive.openBox<InvoiceHiveModel>('invoices');
-    invoiceBox.put(filename, data.toHiveInvoice());
+
     Directory? output = await getApplicationDocumentsDirectory();
     final file = File("${output.path}/$filename.pdf");
     await file.writeAsBytes(await pdf.save());
+    data.filePath = file.path;
+    Box<InvoiceHiveModel> invoiceBox = Hive.box<InvoiceHiveModel>('invoices');
+    invoiceBox.put(filename, data.toHiveInvoice());
     return file;
   }
 }

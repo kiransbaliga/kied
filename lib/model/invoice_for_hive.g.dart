@@ -16,19 +16,20 @@ class InvoiceHiveModelAdapter extends TypeAdapter<InvoiceHiveModel> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return InvoiceHiveModel()
-      ..isInvoice = fields[0] as bool
-      ..receiverName = fields[1] as String
-      ..receiverAddress = fields[2] as String
-      ..compnayAddress = fields[3] as String
-      ..companyName = fields[4] as String
-      ..note = fields[5] as String
-      ..invoiceNo = fields[6] as String
-      ..orderNo = fields[7] as String
-      ..issueDate = fields[8] as String
-      ..dueDate = fields[9] as String
-      ..amount = fields[10] as double
-      ..taxPercent = fields[11] as double;
+    return InvoiceHiveModel(
+      amount: fields[10] as double,
+      companyName: fields[4] as String,
+      compnayAddress: fields[3] as String,
+      dueDate: fields[9] as String,
+      invoiceNo: fields[6] as String,
+      isInvoice: fields[0] as bool,
+      issueDate: fields[8] as String,
+      note: fields[5] as String,
+      orderNo: fields[7] as String,
+      receiverAddress: fields[2] as String,
+      receiverName: fields[1] as String,
+      taxPercent: fields[11] as double,
+    );
   }
 
   @override

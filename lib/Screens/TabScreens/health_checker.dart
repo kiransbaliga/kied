@@ -125,20 +125,20 @@ class HealthChecker extends StatelessWidget {
                         ),
                         Expanded(
                           child: formqstn(
-                            data: 'Total Liability',
-                            hint: 'Total Liability',
+                            data: 'Current Liabilities',
+                            hint: 'Current Liabilities',
                             onchanged: (text) {
-                              hc.editTotalLiability(double.tryParse(text) ?? 0);
+                              hc.editCurrentEmployed(
+                                  double.tryParse(text) ?? 0);
                             },
                           ),
                         ),
                         Expanded(
                           child: formqstn(
-                            data: 'Current Employed',
-                            hint: 'Current Employed',
+                            data: 'Total Liability',
+                            hint: 'Total Liability',
                             onchanged: (text) {
-                              hc.editCurrentEmployed(
-                                  double.tryParse(text) ?? 0);
+                              hc.editTotalLiability(double.tryParse(text) ?? 0);
                             },
                           ),
                         ),

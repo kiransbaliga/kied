@@ -53,6 +53,9 @@ class InvoiceHiveModel {
     this.receiverName = '',
     this.taxPercent = 0,
   });
+  double get getTotalAmount {
+    return (taxPercent * amount / 100) + amount;
+  }
 
   InvoiceData toInvoice() {
     return InvoiceData(

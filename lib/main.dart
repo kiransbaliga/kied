@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:kied/model/expense.dart';
 import 'package:kied/services/sidmenu_controller.dart';
 
 import 'Screens/TabScreens/tabpage.dart';
@@ -11,6 +12,7 @@ void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(InvoiceHiveModelAdapter());
+  Hive.registerAdapter(ExpenseDataAdapter());
 
   runApp(const MyApp());
 }
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
   initHive() async {
     await Hive.openBox<InvoiceHiveModel>('invoices');
 
-    await Hive.openBox<InvoiceHiveModel>('expenses');
+    await Hive.openBox<ExpenseData>('expenses');
   }
 
   // This widget is the root of your application.
