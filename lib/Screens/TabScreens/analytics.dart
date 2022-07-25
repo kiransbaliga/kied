@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:get/get.dart';
@@ -37,22 +39,24 @@ class _AnalyticsState extends State<Analytics> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               SizedBox(
-                height: 20,
+                height: 100,
               ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  // Image(
-                  //   width: 800,
-                  //   image: AssetImage('assets/images/invoice-banner.png'),
-                  // ),
-                ],
+              Center(
+                child: Text(
+                  'Quaterly Analytics',
+                  style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black),
+                ),
+              ),
+              SizedBox(
+                height: 20,
               ),
               SizedBox(
                 height: 25,
               ),
-              Column(
+              Row(
                 children: [
                   Container(
                     width: 500,
@@ -99,10 +103,70 @@ class _AnalyticsState extends State<Analytics> {
                   ),
                   Container(
                     width: 400,
-                    height: 200,
+                    height: 270,
                     child: PieChartSample2(),
                   ),
                 ],
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              // create a card with a logo, title and subtitle
+              Center(
+                child: Text(
+                  'Other Services',
+                  style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                width: 900,
+                height: 290,
+                child: ListView(
+                  shrinkWrap: true,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                  children: [
+                    InkWell(
+                      onTap: () {},
+                      child: Card(
+                        // shape: ,
+                        child: ListTile(
+                          leading: Icon(Icons.account_balance_wallet),
+                          title: Text('Balance Sheet'),
+                          subtitle: Text('calculate your balance sheet'),
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      child: Card(
+                        // shape: ,
+                        child: ListTile(
+                          leading: Icon(Icons.account_box),
+                          title: Text('PnL Statement'),
+                          subtitle: Text('Check your PnL statement'),
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                      onTap: () {},
+                      child: Card(
+                        // shape: ,
+                        child: ListTile(
+                          leading: Icon(Icons.healing),
+                          title: Text('Health Checker'),
+                          subtitle: Text('Check your company health'),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           )),
