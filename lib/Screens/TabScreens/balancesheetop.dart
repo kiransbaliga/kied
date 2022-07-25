@@ -15,17 +15,17 @@ class BalanceSheetOp extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 120,
             ),
-            Center(
-              child: const Text('Balance Sheet Asset',
+            const Center(
+              child: Text('Balance Sheet Asset',
                   style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
                       color: Colors.black)),
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Row(
@@ -52,27 +52,27 @@ class BalanceSheetOp extends StatelessWidget {
                             height: 30,
                           ),
                           dispform(text: "Fixed Assets", i: 0),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           dispform(text: "CWIP", i: 1),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           dispform(text: "Investments", i: 2),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           dispform(text: "Other Assets", i: 3),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              const Text(
                                 'Total Assets',
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 24,
                                   fontWeight: FontWeight.bold,
                                   color: Color(0xFf14d19d),
@@ -83,7 +83,7 @@ class BalanceSheetOp extends StatelessWidget {
                               ),
                               Text(
                                 '\$ ' + summ(0),
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 24,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.grey,
@@ -117,25 +117,25 @@ class BalanceSheetOp extends StatelessWidget {
                             height: 30,
                           ),
                           dispform(text: "Share Capital", i: 4),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           dispform(text: "Reservess", i: 5),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           dispform(text: "Borrowings", i: 6),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           dispform(text: "Other Liabilities", i: 7),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Text(
+                              const Text(
                                 'Total Liabilities',
                                 style: TextStyle(
                                   fontSize: 24,
@@ -148,7 +148,7 @@ class BalanceSheetOp extends StatelessWidget {
                               ),
                               Text(
                                 sum(1),
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 24,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.grey,
@@ -163,7 +163,7 @@ class BalanceSheetOp extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Center(
@@ -201,7 +201,7 @@ class BalanceSheetOp extends StatelessWidget {
                     color: Color(0xff14D19D),
                   ),
                   onTap: () {
-                    c.count.value = 0;
+                    c.count.value = 3;
                   },
                 ),
               ),
@@ -241,10 +241,10 @@ class dispform extends StatelessWidget {
       children: [
         Text(
           text,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
-            color: Color(0xFf14d19d),
+            color: const Color(0xFf14d19d),
           ),
         ),
         const SizedBox(
@@ -252,7 +252,7 @@ class dispform extends StatelessWidget {
         ),
         Text(
           '\$ ${vals[i]}',
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
             color: Colors.grey,
