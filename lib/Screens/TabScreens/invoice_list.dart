@@ -63,7 +63,7 @@ class InvoiceListScreen extends StatelessWidget {
                 ),
                 Image(
                   width: 800,
-                  image: AssetImage('assets/images/invoice-banner.png'),
+                  image: AssetImage('assets/images/expenses-banner.png'),
                 ),
               ],
             ),
